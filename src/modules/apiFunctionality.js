@@ -7,13 +7,12 @@ async function firstDayForeCastRequest(){
     if(locationResponse.status !== 200){
         throw new Error('cannot fetch location data');
     }
-    const foreCastResponse = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${33.44}&lon=${-94.04}&exclude=hourly,minutely,alerts&appid=${API_KEY}`);
+    const foreCastResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${locationData[0].lat}&lon=${locationData[0].lon}&units=imperial&appid=${API_KEY}`);
     const foreCastData = await foreCastResponse.json();
     if(foreCastResponse.status !== 200){
         throw new Error('cannot fetch forecast data');
-    }else{
-        console.log(foreCastData);
     }
+    return foreCastData;
 }
 
 function formatCity(input){
@@ -39,7 +38,9 @@ function formatDate(date){
 
 function overRideFirstDayForecast(data){
     const keys = Object.keys(data);
-    firstDayForeCastRequest();
+    firstDayForeCastRequest().then(forecast =>{
+        data[keys[0]] = forecast;
+    });
 }
 
 function getFiveDayForecast(data){

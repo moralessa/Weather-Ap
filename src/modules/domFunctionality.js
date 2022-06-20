@@ -16,10 +16,11 @@ let keys;
 function domSetForecast(input){
     forecast = input;
     keys = Object.keys(forecast);
+    console.log(forecast);
 }
 
 function populateHead(){
-    
+
 }
 
 function populateBody(){
