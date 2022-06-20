@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather-App</title>
+    <script src="main.js" async></script>
 </head>
 
 <body>
@@ -17,13 +18,17 @@
                 <h5 class="date">Tuesday, 31st May 2022</h5>
                 <h5 class="time">12:41 pm</h5>
                 <h3 class="temperature">56 &deg;F</h3>
-                <h4 class="display">Display &deg;C</h4>
+                <h4 class="change-temp">Display &deg;C</h4>
                 <div class="weather-info">
                     <i class="fa-solid fa-cloud"></i>
                 </div>
                 <div class="search">
                     <input type="text" placeholder="Search Location ...">
                     <img id="search-icon" src="../src/images/search-icon.png" alt="search icon" width="15">
+                </div>
+                <div class="error">
+                    <p>Location not found</p>
+                    <p>Search must be in the form "City", "City, State", or "City, Country"</p>
                 </div>
             </div>
             <div class="right-side">
@@ -118,7 +123,43 @@
             <div class="days-of-week">
                 <div class="day-container">
                     <p class="day">Friday</p>
-                    
+                    <h4 class="day-high-temp">69 &deg;F</h4>
+                    <h5 class="day-low-temp">52 &deg;F</h5>
+                    <p class="day-icon">
+                        <i class="fa-solid fa-cloud"></i>
+                    </p>
+                </div>
+                <div class="day-container">
+                    <p class="day">Friday</p>
+                    <h4 class="day-high-temp">69 &deg;F</h4>
+                    <h5 class="day-low-temp">52 &deg;F</h5>
+                    <p class="day-icon">
+                        <i class="fa-solid fa-cloud"></i>
+                    </p>
+                </div>
+                <div class="day-container">
+                    <p class="day">Friday</p>
+                    <h4 class="day-high-temp">69 &deg;F</h4>
+                    <h5 class="day-low-temp">52 &deg;F</h5>
+                    <p class="day-icon">
+                        <i class="fa-solid fa-cloud"></i>
+                    </p>
+                </div>
+                <div class="day-container">
+                    <p class="day">Friday</p>
+                    <h4 class="day-high-temp">69 &deg;F</h4>
+                    <h5 class="day-low-temp">52 &deg;F</h5>
+                    <p class="day-icon">
+                        <i class="fa-solid fa-cloud"></i>
+                    </p>
+                </div>
+                <div class="day-container">
+                    <p class="day">Friday</p>
+                    <h4 class="day-high-temp">69 &deg;F</h4>
+                    <h5 class="day-low-temp">52 &deg;F</h5>
+                    <p class="day-icon">
+                        <i class="fa-solid fa-cloud"></i>
+                    </p>
                 </div>
             </div>
         </div>
@@ -126,7 +167,6 @@
     <div class="overlay"></div>
 
     <script src="https://kit.fontawesome.com/2635eb7662.js" crossorigin="anonymous"></script>
-    <script src="main.js"></script>
 </body>
 
 </html>
