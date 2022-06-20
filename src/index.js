@@ -2,11 +2,15 @@
 import './styles.scss';
 import { formatCity, foreCastRequest } from './modules/apiFunctionality';
 import domSetForecast from './modules/domFunctionality';
+import icon from './images/search-icon.png';
 
 const errorText = document.querySelector('.error');
 const searchInput = document.getElementById('search-input');
 const searchForm = document.getElementById('search-form');
-const searchButton = document.getElementById('search-icon');
+const searchIcon = new Image();
+searchIcon.src = icon;
+searchIcon.setAttribute('id', 'search-icon');
+searchForm.append(searchIcon);
 
 async function makeCall(input) {
   const inputFormatted = formatCity(input);
@@ -28,7 +32,7 @@ searchForm.addEventListener('submit', (event) => {
   });
 });
 
-searchButton.addEventListener('click', () => {
+searchIcon.addEventListener('click', () => {
   makeCall(searchInput.value).then((data) => {
     domSetForecast(data);
     errorText.style.display = 'none';
