@@ -20,10 +20,10 @@
                 <h3 class="temperature"></h3>
                 <div class="weather-info">
                 </div>
-                <div class="search">
-                    <input type="text" placeholder="Search Location ...">
+                <form class="search" id="search-form" autocomplete="off">
+                    <input type="text" placeholder="Search Location ..." id="search-input">
                     <img id="search-icon" src="../src/images/search-icon.png" alt="search icon" width="15">
-                </div>
+                </form>
                 <div class="error">
                     <p>Location not found</p>
                     <p>Search must be in the form "City", "City, State", or "City, Country"</p>
@@ -106,48 +106,7 @@
             </div>
         </div>
         <div class="body-information">
-            <div class="days-of-week">
-                <div class="day-container">
-                    <p class="day">Friday</p>
-                    <h4 class="day-high-temp">69 &deg;F</h4>
-                    <h5 class="day-low-temp">52 &deg;F</h5>
-                    <p class="day-icon">
-                        <i class="fa-solid fa-cloud"></i>
-                    </p>
-                </div>
-                <div class="day-container">
-                    <p class="day">Friday</p>
-                    <h4 class="day-high-temp">69 &deg;F</h4>
-                    <h5 class="day-low-temp">52 &deg;F</h5>
-                    <p class="day-icon">
-                        <i class="fa-solid fa-cloud"></i>
-                    </p>
-                </div>
-                <div class="day-container">
-                    <p class="day">Friday</p>
-                    <h4 class="day-high-temp">69 &deg;F</h4>
-                    <h5 class="day-low-temp">52 &deg;F</h5>
-                    <p class="day-icon">
-                        <i class="fa-solid fa-cloud"></i>
-                    </p>
-                </div>
-                <div class="day-container">
-                    <p class="day">Friday</p>
-                    <h4 class="day-high-temp">69 &deg;F</h4>
-                    <h5 class="day-low-temp">52 &deg;F</h5>
-                    <p class="day-icon">
-                        <i class="fa-solid fa-cloud"></i>
-                    </p>
-                </div>
-                <div class="day-container">
-                    <p class="day">Friday</p>
-                    <h4 class="day-high-temp">69 &deg;F</h4>
-                    <h5 class="day-low-temp">52 &deg;F</h5>
-                    <p class="day-icon">
-                        <i class="fa-solid fa-cloud"></i>
-                    </p>
-                </div>
-            </div>
+            <div class="days-of-week"></div>
         </div>
     </main>
     <div class="overlay"></div>

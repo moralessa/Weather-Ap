@@ -37,10 +37,12 @@ function formatDate(date){
     return [timeValidation, dateUnformattedArray[0]];
 }
 
-function overRideFirstDayForecast(data){
+function setFirstDayForecast(data){
     const keys = Object.keys(data);
+    let newFirstKey = 'todaysForeCast';
+    keys.push(newFirstKey);
     firstDayForeCastRequest(data).then(forecast =>{
-        data[keys[0]] = forecast;
+        data[newFirstKey] = forecast;
     });
 }
 
@@ -59,7 +61,7 @@ function getFiveDayForecast(data){
        }
     })
     dayForecasts['totalData'] = data;
-    overRideFirstDayForecast(dayForecasts);
+    setFirstDayForecast(dayForecasts);
     return dayForecasts;
 }
 
