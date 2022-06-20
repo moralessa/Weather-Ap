@@ -1,13 +1,8 @@
 const API_KEY = '96f74019283a3f8cdc69b60026732ec2';
-let previousCity;
 
-async function firstDayForeCastRequest(){
-    const locationResponse = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${previousCity}&appid=${API_KEY}&limit=1`)
-    const locationData = await locationResponse.json();
-    if(locationResponse.status !== 200){
-        throw new Error('cannot fetch location data');
-    }
-    const foreCastResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${locationData[0].lat}&lon=${locationData[0].lon}&units=imperial&appid=${API_KEY}`);
+async function firstDayForeCastRequest(data){
+    const totalData = data['totalData'];
+    const foreCastResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${totalData.city.coord.lat}&lon=${totalData.city.coord.lon}&units=imperial&precipitation.mode='rain'&appid=${API_KEY}`);
     const foreCastData = await foreCastResponse.json();
     if(foreCastResponse.status !== 200){
         throw new Error('cannot fetch forecast data');
@@ -15,11 +10,17 @@ async function firstDayForeCastRequest(){
     return foreCastData;
 }
 
-function formatCity(input){
-    let inputArray = input.split('');
-    let locationInputRefactored = inputArray.filter(char => char !== ' ').join('')
-    previousCity = locationInputRefactored;
-    return locationInputRefactored;
+function formatCity(cityName){
+    let returnCity = '';
+    if (cityName) {
+        // remove whitespace for the api call
+         returnCity = cityName
+          .replace(/(\s+$|^\s+)/g, '') // remove whitespace from begining and end of string
+          .replace(/(,\s+)/g, ',') // remove any white space that follows a comma
+          .replace(/(\s+,)/g, ',') // remove any white space that preceeds a comma
+          .replace(/\s+/g, '+'); // replace any remaining white space with +, so it works in api call
+      }
+      return returnCity;
 }
 
 function checkTime(input){
@@ -38,7 +39,7 @@ function formatDate(date){
 
 function overRideFirstDayForecast(data){
     const keys = Object.keys(data);
-    firstDayForeCastRequest().then(forecast =>{
+    firstDayForeCastRequest(data).then(forecast =>{
         data[keys[0]] = forecast;
     });
 }
