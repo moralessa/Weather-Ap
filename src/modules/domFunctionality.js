@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint linebreak-style: ["error", "windows"] */
 const mainContent = document.querySelector('main');
 const forecastHeading = document.querySelector('.forecast-heading');
@@ -118,15 +119,30 @@ function populateHead() {
 
 function populateDay(i) {
   const tempDate = new Date(forecast[keys[i]][0].dt_txt);
-  const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
   const dayContainer = document.createElement('div');
   dayContainer.classList.add('day-container');
+  let calculatedMax;
+  let calculatedMin;
+  if (forecast[keys[i]][1]) {
+    calculatedMax = Math.floor(Math.max(forecast[keys[i]][0].main.temp_max, forecast[keys[i]][1].main.temp_max));
+    calculatedMin = Math.floor(Math.min(forecast[keys[i]][0].main.temp_min, forecast[keys[i]][1].main.temp_min));
+  } else {
+    calculatedMax = Math.floor(forecast[keys[i]][0].main.temp_max);
+    calculatedMin = Math.floor(forecast[keys[i]][0].main.temp_min);
+  }
+  let weatherIcon;
+  if (forecast[keys[i]][1] !== undefined) {
+    weatherIcon = getIcon(forecast[keys[i]][1].weather[0].icon);
+  } else {
+    weatherIcon = getIcon(forecast[keys[i]][0].weather[0].icon);
+  }
   dayContainer.innerHTML = `
             <p class="day">${weekday[tempDate.getDay()]}</p>
-            <h4 class="day-high-temp">${Math.floor(Math.max(forecast[keys[i]][0].main.temp_max, forecast[keys[i]][1].main.temp_max))} &deg;F</h4>
-            <h5 class="day-low-temp">${Math.floor(Math.min(forecast[keys[i]][0].main.temp_min, forecast[keys[i]][1].main.temp_min))} &deg;F</h5>
+            <h4 class="day-high-temp">${calculatedMax} &deg;F</h4>
+            <h5 class="day-low-temp">${calculatedMin} &deg;F</h5>
             <p class="day-icon">
-                ${getIcon(forecast[keys[i]][1].weather[0].icon)}
+                ${weatherIcon}
             </p>
         `;
   daysOfTheWeek.append(dayContainer);

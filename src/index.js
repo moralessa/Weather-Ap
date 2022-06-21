@@ -3,6 +3,7 @@ import './styles.scss';
 import { formatCity, foreCastRequest } from './modules/apiFunctionality';
 import domSetForecast from './modules/domFunctionality';
 import icon from './images/search-icon.png';
+import favicon from './images/favicon.ico';
 
 const errorText = document.querySelector('.error');
 const searchInput = document.getElementById('search-input');
@@ -11,6 +12,11 @@ const searchIcon = new Image();
 searchIcon.src = icon;
 searchIcon.setAttribute('id', 'search-icon');
 searchForm.append(searchIcon);
+const faviconIcon = document.createElement('link');
+faviconIcon.setAttribute('type', 'image/x-icon');
+faviconIcon.setAttribute('rel', 'icon');
+faviconIcon.setAttribute('href', favicon);
+document.head.append(faviconIcon);
 
 async function makeCall(input) {
   const inputFormatted = formatCity(input);
